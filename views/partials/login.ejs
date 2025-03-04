@@ -1,57 +1,57 @@
-  <!-- START Modal login -->
-  <div class="modal-show" id="modal">
-    <div class="containerlogin">
-      <div class="wrapper">
-        <section class="login">
-          <h2>Connexion</h2>
-          <form>
-            <div class="inputbox">
-              <i class="bi bi-envelope-fill"></i>
-              <input type="email" id="email" name="email"/>
-              <label for="">Email</label>
-            </div>
-            <div class="inputbox">
-              <i class="bi bi-lock-fill"></i>
-              <input type="password" id="password" name="password"/>
-              <label for="">Mot de passe</label>
-            </div>
-            <div class="forgot">
-              <input type="checkbox" />
-              <a href="">Mot de passe oublié ?</a>
-            </div>
-            <button class="btn-login">Connexion</button>
-            <div class="register-option">
-              <span>Pas de compte?</span>
-              <a href="" id="switch-to-register">Inscrivez-vous</a>
-            </div>
-          </form>
-        </section>
-        <section class="register">
-          <h2>Inscription</h2>
-          <form action="/users" method="POST">
-            <div class="inputbox">
-              <i class="bi bi-person-fill"></i>
-              <input type="text" id="name" name="name"/>
-              <label for="name">Nom</label>
-            </div>
-            <div class="inputbox">
-              <i class="bi bi-envelope-fill"></i>
-              <input type="email" id="email" name="email"/>
-              <label for="email">Email</label>
-            </div>
-            <div class="inputbox">
-              <i class="bi bi-lock-fill"></i>
-              <input type="password" id="password" name="password" />
-              <label for="password">Mot de passe</label>
-            </div>
-            <button type="submit" class="btn-login">S'inscrire</button>
-            <div class="register-option">
-              <span>Déjà un compte ?</span>
-              <a href="" id="switch-to-login">Connectez-vous</a>
-            </div>
-          </form>
-        </section>
-      </div>
+<!-- START Modal login -->
+<div class="modal-show" id="modal">
+  <div class="containerlogin">
+    <div class="wrapper">
+      <section class="login">
+        <h2>Connexion</h2>
+        <form action="/login" method="POST">
+          <div class="inputbox">
+            <i class="bi bi-envelope-fill"></i>
+            <input type="email" id="email" name="email" />
+            <label for="">Email</label>
+          </div>
+          <div class="inputbox">
+            <i class="bi bi-lock-fill"></i>
+            <input type="password" id="password" name="password" />
+            <label for="">Mot de passe</label>
+          </div>
+          <div class="forgot">
+            <input type="checkbox" />
+            <a href="">Mot de passe oublié ?</a>
+          </div>
+          <button type="submit" class="btn-login">Connexion</button>
+          <div class="register-option">
+            <span>Pas de compte?</span>
+            <a href="" id="switch-to-register">Inscrivez-vous</a>
+          </div>
+        </form>
+      </section>
+      <section class="register">
+        <h2>Inscription</h2>
+        <form action="/signup" method="POST">
+          <div class="inputbox">
+            <i class="bi bi-person-fill"></i>
+            <input type="text" id="name" name="name" />
+            <label for="name">Nom</label>
+          </div>
+          <div class="inputbox">
+            <i class="bi bi-envelope-fill"></i>
+            <input type="email" id="email" name="email" />
+            <label for="email">Email</label>
+          </div>
+          <div class="inputbox">
+            <i class="bi bi-lock-fill"></i>
+            <input type="password" id="password" name="password" />
+            <label for="password">Mot de passe</label>
+          </div>
+          <button type="submit" class="btn-login">S'inscrire</button>
+          <div class="register-option">
+            <span>Déjà un compte ?</span>
+            <a href="" id="switch-to-login">Connectez-vous</a>
+          </div>
+        </form>
+      </section>
     </div>
   </div>
-  <!-- END MODAL LOGIN -->
+</div>
+<!-- END MODAL LOGIN -->

@@ -40,11 +40,17 @@ header a {
   list-style: none !important;
   font-weight: 500;
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: #fff;
 }
-nav,
-li {
+.navbar li {
   list-style: none !important;
+  transition: transform 0.2s ease-in-out !important;
+  font-size: 1.2rem;
+}
+.navbar li:hover {
+  color: #f243a0;
+  transform: scale(1.1);
+  font-weight: bold;
 }
 ul {
   margin: auto;
@@ -54,8 +60,12 @@ nav {
   color: white;
   font-size: 1rem;
 }
+a {
+  transition: transform 0.2s ease-in-out !important;
+}
 a:hover {
   color: #f243a0;
+  transform: scale(1.1);
 }
 .navbar {
   width: 100%;
@@ -105,9 +115,8 @@ a:hover {
   font-weight: bold;
 }
 .action-button:hover {
-  color: #f243a0;
-  background-color: white;
-  border-color: #fff;
+  color: #fff;
+  background-color: #d0328a; /* Légèrement plus foncé pour un contraste subtil */
 }
 .pro {
   background-color: transparent;
@@ -115,12 +124,27 @@ a:hover {
   border: 1px solid #fff;
 }
 .pro:hover {
-  background-color: #fff;
-  color: #f243a0;
+  background-color: #d0328a;
+  border: 1px solid #fff;
+}
+.avatar-icon {
+  font-size: 30px; /* Taille de l'icône */
+  color: #f243a0; /* Couleur de l'icône (ici, bleu) */
+}
+
+.avatar-btn {
+  width: 30px; /* Ajuster la taille de l'avatar si c'est une image */
+  height: 30px; /* Ajuster la taille de l'avatar si c'est une image */
+  border-radius: 50%; /* Rendre l'avatar circulaire */
+  object-fit: cover; /* Ajuster l'image à la taille */
+}
+.btn {
+  transition: transform 0.2s ease-in-out !important;
 }
 .btn:hover {
-  background-color: #fff;
-  color: #f243a0;
+  background-color: #d0328a;
+  color: #fff;
+  transform: scale(1.1);
 }
 /*END CSS HEADER -NAVBAR et Boutton */
 /* ---Burger Menu ---*/
@@ -138,7 +162,7 @@ a:hover {
   transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .burger-menu.open {
-  height: 310px;
+  height: 350px;
 }
 .divider {
   height: 1px;
@@ -271,18 +295,13 @@ h3 {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(241, 157, 225, 0.5);
 }
+.card li {
+  list-style: none !important;
+}
 .card-title {
   color: #f243a0;
 }
-.btn-custom {
-  background-color: #f243a0;
-  border: none;
-  color: #fff;
-}
-.btn-custom:hover {
-  background-color: #fff;
-  color: #f243a0;
-}
+
 /* END CARD BUY */
 /* START FOOTER */
 .footer {
@@ -353,7 +372,25 @@ h3 {
   position: relative;
   width: 100%;
 }
-
+/* Page Contact */
+.container-contact {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 2rem;
+}
+/* Page RGPD */
+.container-rgpd li {
+  color: #cccccc;
+  list-style-type: disc !important;
+}
+.container-rgpd {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+.container-rgpd h2 {
+  padding: 1rem;
+  text-align: start !important;
+}
 .image-container::after {
   content: "";
   position: absolute;
@@ -361,11 +398,55 @@ h3 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--filter-color); /* Couleur et opacité du filtre */
+  background: var(--filter-color); /*Couleur et opacité du filtre*/
   clip-path: polygon(0 -60%, 60% 100%, 0 100%); /* Triangle rectangle */
   pointer-events: none;
 }
 /*END CARD IMAGE BUY */
+/* START ACCORDEON*/
+/* /* Fond sombre pour le container de l'accordéon */
+.accordion {
+  background-color: #1a1a1a; /* Couleur sombre de fond */
+  color: #fff; /* Texte clair */
+}
+.accordion-item {
+  background-color: #444; /* Couleur sombre de fond pour les items */
+  border: 1px solid #555; /* Bordure légèrement plus claire */
+}
+.accordion-button {
+  background-color: #1a1a1a; /* Fond sombre pour le bouton */
+  color: #fff; /* Texte clair */
+  border: none; /* Retirer la bordure par défaut */
+  transition: background-color 0.3s ease; /* Transition douce pour l'effet au survol */
+}
+
+/* Changer la couleur du bouton quand il est déplié */
+.accordion-button:not(.collapsed) {
+  color: #f243a0;
+  background-color: #444; /* Légèrement plus clair quand l'item est ouvert */
+}
+
+/* Ajouter un effet au survol du bouton */
+.accordion-button:hover {
+  color: #f243a0;
+  background-color: #444; /* Légèrement plus clair au survol */
+}
+.accordion-body {
+  background-color: #2a2a2a; /* Fond plus sombre pour le corps de l'accordéon */
+  color: #ffffff; /* Texte un peu plus clair pour contraster avec le fond sombre */
+}
+.accordion-button:focus {
+  box-shadow: none; /* Retirer l'ombre portée par défaut */
+  outline: none; /* Retirer le contour au focus */
+  color: #f243a0;
+}
+/*END ACCORDEON*/
+/* START CONTAINER DETAIL MOVIE */
+.container-detailMovie li {
+  color: #cccccc;
+  list-style-type: disc !important;
+}
+
 /*----RESPONSIVE MEDIA QUERIES----*/
 @media (max-width: 990px) {
   header {
@@ -385,6 +466,25 @@ h3 {
     margin-left: -32px;
   }
 }
+/* footer css */
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.video-link {
+  font-size: 1.5rem; /* Augmenter la taille du texte pour le lien Video */
+  font-weight: bold; /* Le rendre plus épais pour attirer l'attention */
+}
+
 @media (max-width: 576px) {
   .burger-menu {
     left: 2rem;
@@ -442,4 +542,3 @@ h3 {
   }
 }
 /*END SWENNY ET MELANIE CONTENT TEACHER responsive */
-

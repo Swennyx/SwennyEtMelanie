@@ -1,0 +1,68 @@
+<%- include('../partials/header')%> <%- include('../partials/containHeader')%>
+<%- include('../partials/login')%>
+
+
+<div class="container container-detailMovie mt-5">
+    <div class="row align-items-center">
+        <!-- Vidéo à gauche -->
+        <div class="col-md-9 col-12 mb-4">
+            <% if (pack.url_video && pack.url_video.length > 0) { %>
+                <iframe src="<%= pack.url_video[0].url %>" 
+                        width="100%" 
+                        height="315" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            <% } else { %>
+                <p>Aucune vidéo disponible.</p>
+            <% } %>
+        </div>
+        <!-- Contenu à droite -->
+        <div class="col-md-3 col-12 d-flex align-items-start flex-column">
+            <h3 class="text-white mt-3"><%= pack.title %></h3>
+            <p>Prix: <%= pack.price %> €</p>
+            <button type="button" class="btn button-pink">Acheter maintenant</button>
+            <ul class="mt-3 m-0">
+                <% pack.learning_description.forEach((desc, index) => { %>
+                    <li><%= desc %></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Accordéon -->
+<div class="container mt-5">
+    <h2><%= pack.title %></h2>
+    <p class="mt-4 my-4"><%= pack.description %></p>
+
+    <p style="font-style: italic;">Durée totale: <%= pack.total_durations %> heures</p>
+    <p style="font-style: italic;">Total vidéos: <%= pack.total_videos %></p>
+
+    <div class="accordion accordion-flush container mt-4" id="accordionFlushExample">
+        <h4>Vidéos</h4>
+        <% if (pack.url_video && pack.url_video.length > 0) { %>
+            <% pack.url_video.forEach((video, index) => { %>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index %>" aria-expanded="false" aria-controls="flush-collapse<%= index %>">
+                            <%= video.title %>
+                        </button>
+                    </h2>
+                    <div id="flush-collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <iframe src="<%= video.url %>" width="100%" height="315" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                            <p class="mt-4 my-2"><strong>Description:</strong> <%= video.description %></p>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>Aucune vidéo disponible.</p>
+        <% } %>
+    </div>
+</div>
+
+
+<%- include('../partials/footer')%>

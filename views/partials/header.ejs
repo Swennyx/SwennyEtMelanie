@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -28,7 +29,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/testlogin.css" />
+    <link rel="stylesheet" href="/css/login.css" />
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -44,11 +45,22 @@
           <li><a href="/">Accueil</a></li>
           <li><a href="/video">Vidéo</a></li>
           <li><a href="/#teacher">A propos</a></li>
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
         <div class="buttons">
-          <a href="#" class="action-button pro btn-connexion">Connexion</a>
-          <a href="#" class="action-button btn-inscription">Inscription</a>
+          <% if (user && (user.role === 'admin' || user.role === 'superadmin')) { %>
+            <a href="/admin" class="action-button btn-profil">Admin panel</a>
+          <% } %>
+          <% if (!user) { %>
+            <!-- Si l'utilisateur n'est PAS connecté, afficher Connexion et Inscription -->
+            <a href="#" class="action-button pro btn-connexion">Connexion</a>
+            <a href="#" class="action-button btn-inscription">Inscription</a>
+          <% } else { %>
+            <!-- Si l'utilisateur est connecté, afficher Déconnexion -->
+            <a href="#" class="action-button btn-profil">Mon profil</a>
+            <a href="/logout" class=" action-button pro btn-deconnexion">Déconnexion</a>
+          <% } %>
+        
         </div>
         <div class="burger-menu-button">
           <i class="fa-solid fa-bars"></i>
@@ -59,12 +71,19 @@
           <li><a href="/">Accueil</a></li>
           <li><a href="/video">Vidéo</a></li>
           <li><a href="/#teacher">A propos</a></li>
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
           <div class="divider"></div>
           <div class="buttons-burger-menu">
-            <a href="#" class="action-button pro btn-connexion">Connexion</a>
-            <a href="#" class="action-button btn-inscription">Inscription</a>
-          </div>
+            <% if (user && (user.role === 'admin' || user.role === 'superadmin')) { %>
+              <a href="/admin" class="action-button pro btn-connexion">Admin</a>
+            <% } %>
+            <% if (!user) { %>
+              <a href="#" class="action-button pro btn-connexion">Connexion</a>
+              <a href="#" class="action-button btn-inscription">Inscription</a>
+            <% } else { %>
+              <a href="#" class="action-button btn-profil">Mon profil</a>
+              <a href="/logout" class="action-button pro btn-deconnexion">Déconnexion</a>
+            <% } %>
         </ul>
       </div>
       <!-- END NavBar -->

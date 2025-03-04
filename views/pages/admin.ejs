@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de bord</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        display: flex;
+      }
+      #sidebar {
+        width: 250px;
+        height: 100vh;
+        background: #343a40;
+        color: white;
+        padding-top: 20px;
+        position: fixed;
+      }
+      #sidebar a {
+        display: block;
+        color: white;
+        padding: 15px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+      #sidebar a:hover {
+        background: #495057;
+      }
+      #content {
+        margin-left: 260px;
+        padding: 20px;
+        width: 100%;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <h3 class="text-center">Admin Panel</h3>
+      <a href="#" onclick="showSection('users')">👤 Utilisateurs</a>
+      <a href="#" onclick="showSection('packs')">🎥 Packs</a>
+    </div>
+
+    <!-- Contenu principal -->
+    <div id="content">
+      <h1 class="mb-4">Bienvenue sur le tableau de bord</h1>
+
+      <!-- Section Utilisateurs -->
+      <div id="users-section">
+        <h2>Liste des utilisateurs</h2>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Rôle</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+            <tr>
+              <td><%= user._id %></td>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <td>
+                <a
+                  href="/admin/edit/<%= user._id %>"
+                  class="btn btn-warning btn-sm"
+                  >Modifier</a
+                >
+                <form
+                  action="/admin/delete/<%= user._id %>"
+                  method="POST"
+                  class="d-inline"
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-danger btn-sm"
+                    onclick="return confirm('Confirmer la suppression ?')"
+                  >
+                    Supprimer
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section Packs -->
+      <div id="packs-section" class="hidden">
+        <h2>Liste des packs</h2>
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Titre</th>
+              <th>Description</th>
+              <th>Level</th>
+              <th>Prix</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% packs.forEach(pack => { %>
+            <tr>
+              <td><%= pack._id %></td>
+              <td><%= pack.title %></td>
+              <td><%= pack.description %></td>
+              <td><%= pack.level %></td>
+              <td><%= pack.price %> €</td>
+              <td>
+                <a
+                  href="/admin/edit-pack/<%= pack._id %>"
+                  class="btn btn-warning btn-sm"
+                  >Modifier</a
+                >
+                <form
+                  action="/admin/delete-pack/<%= pack._id %>"
+                  method="POST"
+                  class="d-inline"
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-danger btn-sm"
+                    onclick="return confirm('Confirmer la suppression du pack ?')"
+                  >
+                    Supprimer
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <a href="/admin/add-pack" class="btn btn-success mb-3"
+          >Ajouter un Pack</a
+        >
+      </div>
+    </div>
+
+    <script>
+      function showSection(section) {
+        document.getElementById("users-section").classList.add("hidden");
+        document.getElementById("packs-section").classList.add("hidden");
+
+        if (section === "users") {
+          document.getElementById("users-section").classList.remove("hidden");
+        } else if (section === "packs") {
+          document.getElementById("packs-section").classList.remove("hidden");
+        }
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
